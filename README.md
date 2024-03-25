@@ -1,6 +1,7 @@
 # Vault Friend
 ### Asists with vault design and bastion creation
 CivMC vault science is challenging and time consuming. This mod aims to remove the technical barrier to entry by providing informative visualizers and World Edit inspired buildtools.
+**Disclaimer:** this mod is meant to be used in creative worlds only. Live use is discouraged 
 
 ---
 
