@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "vaultfriend",
+  "version": "${version}",
+  "name": "VaultFriend",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/Alto Wisdom/VaultFriend"
+  },
+  "license": "MIT",
+  "icon": "assets/vaultfriend/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+    ],
+    "main": [
+      "net.altosheeve.vaultfriend.VaultFriend"
+    ]
+  },
+  "mixins": [
+    "vaultfriend.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
