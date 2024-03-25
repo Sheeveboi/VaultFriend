@@ -4,7 +4,10 @@
   "version": "${version}",
   "name": "VaultFriend",
   "description": "",
-  "authors": [],
+  "authors": [
+    "Alto",
+    "Cookie"
+  ],
   "contact": {
     "repo": "https://github.com/Alto Wisdom/VaultFriend"
   },

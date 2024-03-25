@@ -75,14 +75,12 @@ public class Interactions {
                     BlockPos c4 = new BlockPos(o.getX() + 10, pos.getY(), o.getZ() + 10);
 
                     if (withinField(pc1, o)) {
-                        System.out.println("bitch");
                         BlockPos nc1 = c4.add(1, 0, 1);
                         field fnew = new field(pos, pc1, nc1);
                         fnew.origins.add(o);
                         addToBuffer.add(fnew);
                     }
                     else if (withinField(pc2, o)) {
-                        System.out.println("ouch");
                         BlockPos nc1 = pc2.add(1, 0, 0);
                         BlockPos nc2 = c3.add(0, 0, 1);
                         field fnew = new field(pos, nc1, nc2);
@@ -90,7 +88,6 @@ public class Interactions {
                         addToBuffer.add(fnew);
                     }
                     else if (withinField(pc3, o)) {
-                        System.out.println("lol");
                         BlockPos nc1 = pc3.add(0, 0, 1);
                         BlockPos nc2 = c2.add(1, 0, 0);
                         field fnew = new field(pos, nc1, nc2);
@@ -98,7 +95,6 @@ public class Interactions {
                         addToBuffer.add(fnew);
                     }
                     else if (withinField(pc4, o)) {
-                        System.out.println("lmao");
                         BlockPos nc1 = pc4.add(1, 0, 1);
                         field fnew = new field(pos, nc1, c1);
                         fnew.origins.add(o);
