@@ -1,6 +1,6 @@
 package net.altosheeve.vaultfriend;
 
-import net.minecraft.block.Block;
+import net.altosheeve.vaultfriend.gui.MainScreen;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.hit.BlockHitResult;
@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class Interactions {
 
-    public static boolean yMode = false;
+    public static boolean yMode = true;
     public static BlockPos getLookingAtPos() {
         MinecraftClient client = MinecraftClient.getInstance();
         HitResult hit = client.crosshairTarget;
@@ -58,9 +58,9 @@ public class Interactions {
     public static void createField(BlockPos pos, BlockState state) {
         if (Objects.equals(state.getBlock().getName().getString(), "Sponge")) {
 
-            ArrayList<field> addToBuffer = new ArrayList<field>();
+            ArrayList<FieldRenderInfo> addToBuffer = new ArrayList<FieldRenderInfo>();
             for (int i = 0; i < Rendering.localBuffer.size(); i++) {
-                field f = Rendering.localBuffer.get(i);
+                FieldRenderInfo f = Rendering.localBuffer.get(i);
                 if (f.origins.size() == 1) {
                     BlockPos o = f.origins.get(0);
 
@@ -76,27 +76,27 @@ public class Interactions {
 
                     if (withinField(pc1, o)) {
                         BlockPos nc1 = c4.add(1, 0, 1);
-                        field fnew = new field(pos, pc1, nc1);
+                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, pc1, nc1);
                         fnew.origins.add(o);
                         addToBuffer.add(fnew);
                     }
                     else if (withinField(pc2, o)) {
                         BlockPos nc1 = pc2.add(1, 0, 0);
                         BlockPos nc2 = c3.add(0, 0, 1);
-                        field fnew = new field(pos, nc1, nc2);
+                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, nc1, nc2);
                         fnew.origins.add(o);
                         addToBuffer.add(fnew);
                     }
                     else if (withinField(pc3, o)) {
                         BlockPos nc1 = pc3.add(0, 0, 1);
                         BlockPos nc2 = c2.add(1, 0, 0);
-                        field fnew = new field(pos, nc1, nc2);
+                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, nc1, nc2);
                         fnew.origins.add(o);
                         addToBuffer.add(fnew);
                     }
                     else if (withinField(pc4, o)) {
                         BlockPos nc1 = pc4.add(1, 0, 1);
-                        field fnew = new field(pos, nc1, c1);
+                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, nc1, c1);
                         fnew.origins.add(o);
                         addToBuffer.add(fnew);
                     }
@@ -107,15 +107,15 @@ public class Interactions {
             BlockPos c1 = new BlockPos(pos.getX() - 10, pos.getY(), pos.getZ() - 10);
             BlockPos c2 = new BlockPos(pos.getX() + 11, pos.getY(), pos.getZ() + 11);
             float[] rgb = {(float) Math.random(), (float) Math.random(), (float) Math.random(), 0.07f};
-            Rendering.localBuffer.add(new field(pos, c1, c2, rgb));
+            Rendering.localBuffer.add(new FieldRenderInfo(false, pos, c1, c2, rgb));
             Rendering.localBuffer.addAll(addToBuffer);
         }
     }
     public static void removeField(BlockPos pos, BlockState state) {
         if (Objects.equals(state.getBlock().getName().getString(), "Sponge")) {
-            ArrayList<field> rem = new ArrayList<field>();
+            ArrayList<FieldRenderInfo> rem = new ArrayList<FieldRenderInfo>();
             for (int i = 0; i < Rendering.localBuffer.size(); i++) {
-                field f = Rendering.localBuffer.get(i);
+                FieldRenderInfo f = Rendering.localBuffer.get(i);
                 for (int t = 0; t < f.origins.size(); t++) {
                     BlockPos o = f.origins.get(t);
                     if (o.getX() == pos.getX() && o.getY() == pos.getY() && o.getZ() == pos.getZ()) {

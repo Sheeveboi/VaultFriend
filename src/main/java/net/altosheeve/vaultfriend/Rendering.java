@@ -3,7 +3,6 @@ package net.altosheeve.vaultfriend;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
@@ -11,7 +10,8 @@ import java.util.ArrayList;
 
 public class Rendering {
     public static int yLevel = 500;
-    public static ArrayList<field> localBuffer = new ArrayList<field>();
+    public static boolean toggleRender = true;
+    public static ArrayList<FieldRenderInfo> localBuffer = new ArrayList<FieldRenderInfo>();
 
     public static void buildRenderBox(Box box, float R, float G, float B, float alpha, BufferBuilder buffer) {
 
@@ -84,9 +84,11 @@ public class Rendering {
         buffer.begin(VertexFormat.DrawMode.TRIANGLE_STRIP, VertexFormats.POSITION_COLOR);
 
         try {
-            for (field f : localBuffer) {
-                Box b = new Box(f.c1.getX(), f.c1.getY(), f.c1.getZ(), f.c2.getX(), f.c2.getY() + yLevel, f.c2.getZ());
-                buildRenderBox(b, f.rgb[0], f.rgb[1], f.rgb[2], f.rgb[3], buffer);
+            if (toggleRender) {
+                for (FieldRenderInfo f : localBuffer) {
+                    Box b = new Box(f.c1.getX(), f.c1.getY(), f.c1.getZ(), f.c2.getX(), f.c2.getY() + yLevel, f.c2.getZ());
+                    buildRenderBox(b, f.rgb[0], f.rgb[1], f.rgb[2], f.rgb[3], buffer);
+                }
             }
         }
         catch (Exception e) {

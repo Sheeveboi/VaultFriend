@@ -41,7 +41,7 @@ public class Keymappings {
                 new KeyBinding(
                         "key.vaultfriend.toggleRender",
                         InputUtil.Type.KEYSYM,
-                        GLFW.GLFW_KEY_Y,
+                        GLFW.GLFW_KEY_R,
                         "key.category.VaultFriend"
                 )
         );
