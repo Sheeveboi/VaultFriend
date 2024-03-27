@@ -11,6 +11,22 @@ public class Keymappings {
     public static KeyBinding removeField;
     public static KeyBinding yModeToggle;
     public static KeyBinding toggleRender;
+    public static KeyBinding vMenuModkey = KeyBindingHelper.registerKeyBinding(
+            new KeyBinding(
+                    "vkey",
+                    InputUtil.Type.KEYSYM,
+                    GLFW.GLFW_KEY_V,
+                    ""
+            )
+    );
+    public static KeyBinding mMenuModkey = KeyBindingHelper.registerKeyBinding(
+            new KeyBinding(
+                    "mkey",
+                    InputUtil.Type.KEYSYM,
+                    GLFW.GLFW_KEY_M,
+                    ""
+            )
+    );
     public static void registerKeys() {
         addField = KeyBindingHelper.registerKeyBinding(
                 new KeyBinding(
