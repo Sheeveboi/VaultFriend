@@ -6,22 +6,30 @@ CivMC vault science is challenging and time consuming. This mod aims to remove t
 
 ---
 
-### Features
+## Features
 Current list of features available 
 - Visualization of bastion fields
 - Visualization of bastion field intersections
 - Togglable mode between single y layer visualization of bastion fields and full visualization
 
-### Keybinds
+(EXPERIMENTAL)
+- Config menu
+    - toggle button between random field color and user defined field color
+    - Changable field and intersection alpha / color
+---
+## Keybinds
 List of default keybinds for Vault Friend
 - **[** (Left Bracket) : Add field manually. Creates a vault bastion field around marked block
 - **]** (Right Bracket) : Remove field manaully. Removes a field if one is currently present around a block
 - **Y** : Toggles between single and full Y layer visualization modes (Full visualization is default mode)
 - **R** : Toggles field rendering
 
+(EXPERIMENTAL)
+- **V + M** : Opens config menu
+
 ---
 
-### Install
+## Install
 - Go to the releases section on the repo sidebard and select the latest version
 - Download the .jar file from the assets menu
 - Enter your .minecraft folder and drag the installed .jar file into the "Mods" Folder
