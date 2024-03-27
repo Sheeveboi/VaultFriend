@@ -13,6 +13,33 @@ import java.util.Objects;
 public class Interactions {
 
     public static boolean yMode = true;
+    public static boolean randomColor = true;
+    public static float fieldAlpha = 0.07f;
+    public static float fieldR = 0.0f;
+    public static float fieldG = 1.0f;
+    public static float fieldB = 0.0f;
+
+    public static float iAlpha = 0.1f;
+    public static float iR = 1.0f;
+    public static float iG = 0.0f;
+    public static float iB = 0.0f;
+
+    public static void updateColor(boolean value) {
+        for (FieldRenderInfo field : Rendering.localBuffer) {
+            if (!field.intersection) {
+                if (value) {
+                    float[] rgb = {(float) Math.random(), (float) Math.random(), (float) Math.random(), fieldAlpha};
+                    field.rgb = rgb;
+                } else {
+                    float [] rgb = {fieldR, fieldG, fieldB, fieldAlpha};
+                    field.rgb = rgb;
+                }
+            } else {
+                float [] rgb = {iR, iG,iB, iAlpha};
+                field.rgb = rgb;
+            }
+        }
+    }
     public static BlockPos getLookingAtPos() {
         MinecraftClient client = MinecraftClient.getInstance();
         HitResult hit = client.crosshairTarget;
@@ -48,6 +75,14 @@ public class Interactions {
             }
         }
 
+        while (Keymappings.toggleRender.wasPressed()) Rendering.toggleRender = !Rendering.toggleRender;
+
+        if (Keymappings.vMenuModkey.isPressed()) {
+            if (Keymappings.mMenuModkey.isPressed()) {
+                MinecraftClient.getInstance().setScreen(new MainScreen());
+            }
+        }
+
     }
 
     public static boolean withinField(BlockPos pos1, BlockPos pos2) {
@@ -76,27 +111,31 @@ public class Interactions {
 
                     if (withinField(pc1, o)) {
                         BlockPos nc1 = c4.add(1, 0, 1);
-                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, pc1, nc1);
+                        float[] rgb = {iR, iG, iB, iAlpha};
+                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, pc1, nc1, rgb);
                         fnew.origins.add(o);
                         addToBuffer.add(fnew);
                     }
                     else if (withinField(pc2, o)) {
                         BlockPos nc1 = pc2.add(1, 0, 0);
                         BlockPos nc2 = c3.add(0, 0, 1);
-                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, nc1, nc2);
+                        float[] rgb = {iR, iG, iB, iAlpha};
+                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, nc1, nc2, rgb);
                         fnew.origins.add(o);
                         addToBuffer.add(fnew);
                     }
                     else if (withinField(pc3, o)) {
                         BlockPos nc1 = pc3.add(0, 0, 1);
                         BlockPos nc2 = c2.add(1, 0, 0);
-                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, nc1, nc2);
+                        float[] rgb = {iR, iG, iB, iAlpha};
+                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, nc1, nc2, rgb);
                         fnew.origins.add(o);
                         addToBuffer.add(fnew);
                     }
                     else if (withinField(pc4, o)) {
                         BlockPos nc1 = pc4.add(1, 0, 1);
-                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, nc1, c1);
+                        float[] rgb = {iR, iG, iB, iAlpha};
+                        FieldRenderInfo fnew = new FieldRenderInfo(true, pos, nc1, c1, rgb);
                         fnew.origins.add(o);
                         addToBuffer.add(fnew);
                     }
@@ -106,8 +145,16 @@ public class Interactions {
 
             BlockPos c1 = new BlockPos(pos.getX() - 10, pos.getY(), pos.getZ() - 10);
             BlockPos c2 = new BlockPos(pos.getX() + 11, pos.getY(), pos.getZ() + 11);
-            float[] rgb = {(float) Math.random(), (float) Math.random(), (float) Math.random(), 0.07f};
-            Rendering.localBuffer.add(new FieldRenderInfo(false, pos, c1, c2, rgb));
+
+            if (randomColor) {
+                float [] rgb = {(float) Math.random(), (float) Math.random(), (float) Math.random(), fieldAlpha};
+                Rendering.localBuffer.add(new FieldRenderInfo(false, pos, c1, c2, rgb));
+            }
+            else {
+                float [] rgb = {fieldR, fieldG, fieldB, fieldAlpha};
+                Rendering.localBuffer.add(new FieldRenderInfo(false, pos, c1, c2, rgb));
+            }
+
             Rendering.localBuffer.addAll(addToBuffer);
         }
     }
