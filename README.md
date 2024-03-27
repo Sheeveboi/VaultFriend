@@ -17,6 +17,7 @@ List of default keybinds for Vault Friend
 - **[** (Left Bracket) : Add field manually. Creates a vault bastion field around marked block
 - **]** (Right Bracket) : Remove field manaully. Removes a field if one is currently present around a block
 - **Y** : Toggles between single and full Y layer visualization modes (Full visualization is default mode)
+- **R** : Toggles field rendering
 
 ---
 
