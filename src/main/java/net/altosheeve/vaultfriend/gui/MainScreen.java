@@ -19,7 +19,7 @@ public class MainScreen extends Screen {
         super(Text.of("Vein friend config screen"));
         this.h = this.height;
     }
-    /*
+
     private String reduceFloat(double i) {
         try {
             return Double.toString(i).substring(0, 4);
@@ -258,5 +258,5 @@ public class MainScreen extends Screen {
         visheader.drawCenterWithShadow(matrices, this.width / 9 * 3, 20);
 
         super.render(matrices, mouseX, mouseY, delta);
-    }*/
+    }
 }
